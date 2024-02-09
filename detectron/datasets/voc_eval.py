@@ -25,17 +25,17 @@
 import logging
 import numpy as np
 import os
-import xml.etree.ElementTree as ET
 
 from detectron.utils.io import load_object
 from detectron.utils.io import save_object
+import defusedxml.ElementTree
 
 logger = logging.getLogger(__name__)
 
 
 def parse_rec(filename):
     """Parse a PASCAL VOC xml file."""
-    tree = ET.parse(filename)
+    tree = defusedxml.ElementTree.parse(filename)
     objects = []
     for obj in tree.findall('object'):
         obj_struct = {}
